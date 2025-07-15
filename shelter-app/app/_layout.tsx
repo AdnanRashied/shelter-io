@@ -34,6 +34,10 @@ export default function RootLayout() {
               name="auth/LoginScreen"
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="voice/VoiceScreen"
+              options={{ headerShown: false }}
+            />
             <Stack.Screen name="+not-found" />
           </Stack>
         </ThemeProvider>
