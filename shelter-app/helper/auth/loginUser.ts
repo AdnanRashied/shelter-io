@@ -17,7 +17,7 @@ interface LoginResponse {
   };
 }
 
-const GATEWAY_URL = `${LOGIN_GATEWAY}/login`;
+const GATEWAY_URL = `${LOGIN_GATEWAY}`;
 
 export const loginUser = async ({
   email,

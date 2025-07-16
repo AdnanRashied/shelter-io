@@ -20,7 +20,7 @@ import logo from "../../assets/images/vectorhome.png";
 import { loginUser } from "../../helper/auth/loginUser";
 import { AuthenticationError } from "../../helper/error";
 
-const LoginScreen = () => {
+const LoginScreen: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
