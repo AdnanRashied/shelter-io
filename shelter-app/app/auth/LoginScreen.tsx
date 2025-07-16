@@ -17,9 +17,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import RoundButton from "components/RoundButton";
 import RoundTextField from "components/RoundTextField";
 import logo from "../../assets/images/vectorhome.png";
-import { loginUser, AuthenticationError } from "helper/loginUser";
+import { loginUser } from "./loginUser";
+import { AuthenticationError } from "../../helper/error";
 
-export default function LoginScreen() {
+const LoginScreen = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,11 +30,10 @@ export default function LoginScreen() {
     setLoading(true);
     try {
       const token = await loginUser({ email, password });
-      console.log("Token:", token);
       router.replace("/");
     } catch (error) {
       if (error instanceof AuthenticationError) {
-        Alert.alert("Login Failed", error.message);
+        Alert.alert("Login Failed");
       } else {
         Alert.alert(
           "Unexpected Error",
@@ -78,7 +78,6 @@ export default function LoginScreen() {
               <RoundButton
                 title={loading ? "Logging In..." : "Log In"}
                 onPress={handleLogin}
-                disabled={loading}
               />
             </View>
           </ScrollView>
@@ -86,46 +85,50 @@ export default function LoginScreen() {
       </TouchableWithoutFeedback>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+    backgroundColor: "#0F0F0F",
   },
   logo: {
-    width: 200,
-    height: 200,
+    width: 160,
+    height: 160,
     resizeMode: "contain",
     alignSelf: "center",
-    marginBottom: 30,
+    marginBottom: 10,
   },
   keyboardContainer: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "transparent",
   },
   container: {
     flexGrow: 1,
     justifyContent: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
     paddingVertical: 40,
   },
   box: {
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
-    padding: 20,
-    borderRadius: 12,
+    backgroundColor: "rgba(103, 58, 183, 0.1)",
+    borderRadius: 20,
+    padding: 24,
+    borderColor: "rgba(103, 58, 183, 0.3)",
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.3)",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    elevation: 5,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
+    elevation: 8,
   },
   title: {
-    fontSize: 28,
-    color: "white",
-    marginBottom: 20,
-    fontWeight: "bold",
+    fontSize: 30,
+    fontWeight: "700",
+    color: "#FFFFFF",
     textAlign: "center",
+    marginBottom: 24,
+    letterSpacing: 1,
   },
 });
+
+export default LoginScreen;
