@@ -17,7 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import RoundButton from "components/RoundButton";
 import RoundTextField from "components/RoundTextField";
 import logo from "../../assets/images/vectorhome.png";
-import { loginUser } from "./loginUser";
+import { loginUser } from "../../helper/auth/loginUser";
 import { AuthenticationError } from "../../helper/error";
 
 const LoginScreen = () => {
